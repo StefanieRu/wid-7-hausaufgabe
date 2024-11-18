@@ -60,7 +60,7 @@ function Popup({ properties, geometry }) {
 
 function Map() {
   const [quakesJson, setQuakesJson] = useState([]);
-  const [minMag, setMinMag] = useState("2.5");
+  const [magnitude, setMinMag] = useState("2.5");
   const [timespan, setTimespan] = useState("week");
 
   async function fetchQuakeData(url) {
@@ -77,16 +77,21 @@ function Map() {
   }
 
   useEffect(() => {
-    const url = `${BASE_URL}/${minMag}_${timespan}.geojson`;
+    const url = `${BASE_URL}/${magnitude}_${timespan}.geojson`;
     fetchQuakeData(url);
-  }, []);
+  }, [magnitude, timespan]);
 
   // console.log(quakesJson);
 
   return (
     <>
       <CssBaseline />
-      <Header />
+      <Header
+        magnitude={magnitude}
+        timespan={timespan}
+        setMinMag={setMinMag}
+        setTimespan={setTimespan}
+      />
       <MapContainer
         style={{ height: "100vh" }}
         center={[0, 0]}
@@ -96,13 +101,16 @@ function Map() {
         maxBoundsViscosity={1}
       >
         <LayersControl position="topright">
-          {BASE_LAYERS.map(baseLayer => (
+          {BASE_LAYERS.map((baseLayer) => (
             <LayersControl.BaseLayer
               key={baseLayer.url}
               checked={baseLayer.checked}
               name={baseLayer.name}
             >
-              <TileLayer attribution={baseLayer.attribution} url={baseLayer.url} />
+              <TileLayer
+                attribution={baseLayer.attribution}
+                url={baseLayer.url}
+              />
             </LayersControl.BaseLayer>
           ))}
 
