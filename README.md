@@ -29,7 +29,7 @@ npm install && npm run dev
   - **Min. Magnitude**: "_All_", "_M1.0+_", "_M2.5+_", etc.
 
 **Beispiel Screenshot einer finalen App**
-![alt text](image.png)
+![alt text](image-1.png)
 ![](/public/final-app-screenshot.png)
 
 **Tipps**
