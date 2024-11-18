@@ -62,7 +62,7 @@ export default function Header({
               component="div"
               sx={{ flexGrow: 1 }}
             >
-              Select Time Period:
+              Select Magnitude:
             </Typography>
             <ToggleButtonGroup
               color="secondary"
